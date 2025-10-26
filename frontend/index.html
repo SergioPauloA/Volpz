@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <link rel="stylesheet" href="./css/style.css">
+
+    <title>Volpz - Sistema de Comunicação Corporativa</title>
+</head>
+<body>
+    
+    <!-- Tela de Login -->
+    <section class="login-container">
+        <section class="login">
+            <div class="login-header">
+                <h1>VOLPZ</h1>
+                <p>Sistema de Comunicação Corporativa</p>
+            </div>
+            <form class="login__form">
+                <div class="input-group">
+                    <label for="cpf">CPF</label>
+                    <input type="text" id="cpf" class="login__input" placeholder="000.000.000-00" required maxlength="14" />
+                </div>
+                <div class="input-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" class="login__input" placeholder="Sua senha" required />
+                </div>
+                <button type="submit" class="login__button">Entrar</button>
+                <div class="login-error" style="display: none;"></div>
+            </form>
+        </section>
+    </section>
+
+    <!-- Interface Principal -->
+    <section class="main-container" style="display: none;">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>VOLPZ</h2>
+                <div class="user-info">
+                    <span class="user-name"></span>
+                    <span class="user-sector"></span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <button class="nav-button active" data-tab="conversations">
+                    <span class="material-symbols-outlined">chat</span>
+                    Conversas
+                </button>
+                <button class="nav-button" data-tab="users">
+                    <span class="material-symbols-outlined">people</span>
+                    Usuários
+                </button>
+                <button class="nav-button" data-tab="groups">
+                    <span class="material-symbols-outlined">groups</span>
+                    Grupos
+                </button>
+                <button class="nav-button admin-only" data-tab="admin" style="display: none;">
+                    <span class="material-symbols-outlined">admin_panel_settings</span>
+                    Administração
+                </button>
+            </nav>
+
+            <button class="logout-button">
+                <span class="material-symbols-outlined">logout</span>
+                Sair
+            </button>
+        </aside>
+
+        <main class="main-content">
+            <!-- Aba Conversas -->
+            <section class="tab-content active" id="conversations-tab">
+                <div class="conversations-list">
+                    <h3>Suas Conversas</h3>
+                    <div class="conversations-container">
+                        <div class="no-conversations">
+                            <p>Nenhuma conversa iniciada</p>
+                            <p>Vá para a aba "Usuários" para iniciar uma conversa</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Aba Usuários -->
+            <section class="tab-content" id="users-tab">
+                <div class="users-list">
+                    <h3>Usuários Disponíveis</h3>
+                    <div class="users-container"></div>
+                </div>
+            </section>
+
+            <!-- Aba Grupos -->
+            <section class="tab-content" id="groups-tab">
+                <div class="groups-section">
+                    <div class="groups-header">
+                        <h3>Grupos</h3>
+                        <button class="create-group-button">
+                            <span class="material-symbols-outlined">add</span>
+                            Criar Grupo
+                        </button>
+                    </div>
+                    <div class="groups-container">
+                        <div class="no-groups">
+                            <p>Nenhum grupo criado</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Aba Administração -->
+            <section class="tab-content" id="admin-tab">
+                <div class="admin-section">
+                    <h3>Painel Administrativo</h3>
+                    <div class="admin-forms">
+                        <div class="add-user-form">
+                            <h4>Adicionar Novo Usuário</h4>
+                            <form class="register-form">
+                                <div class="form-row">
+                                    <div class="input-group">
+                                        <label for="new-cpf">CPF</label>
+                                        <input type="text" id="new-cpf" placeholder="000.000.000-00" required maxlength="14" />
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="new-senha">Senha</label>
+                                        <input type="password" id="new-senha" placeholder="Senha" required />
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="input-group">
+                                        <label for="new-nome">Nome Completo</label>
+                                        <input type="text" id="new-nome" placeholder="Nome completo" required />
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="new-setor">Setor</label>
+                                        <select id="new-setor" required>
+                                            <option value="">Selecione o setor</option>
+                                            <option value="T.I">T.I</option>
+                                            <option value="RH">Recursos Humanos</option>
+                                            <option value="Financeiro">Financeiro</option>
+                                            <option value="Vendas">Vendas</option>
+                                            <option value="Marketing">Marketing</option>
+                                            <option value="Operacional">Operacional</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="new-cargo">Cargo</label>
+                                    <input type="text" id="new-cargo" placeholder="Cargo/função" required />
+                                </div>
+                                <button type="submit" class="register-button">Cadastrar Usuário</button>
+                                <div class="register-message"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Área de Chat -->
+        <section class="chat-area" style="display: none;">
+            <div class="chat-header">
+                <button class="close-chat">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                </button>
+                <div class="chat-info">
+                    <h4 class="chat-title"></h4>
+                    <span class="chat-subtitle"></span>
+                </div>
+            </div>
+
+            <div class="chat-messages">
+                <!-- Mensagens aparecerão aqui -->
+            </div>
+
+            <form class="chat-form">
+                <input type="text" class="chat-input" placeholder="Digite uma mensagem..." required />
+                <button type="submit" class="chat-button">
+                    <span class="material-symbols-outlined">send</span>
+                </button>
+            </form>
+        </section>
+    </section>
+
+    <!-- Modal para Criar Grupo -->
+    <div class="modal" id="create-group-modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Criar Novo Grupo</h3>
+                <button class="close-modal">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <form class="group-form">
+                <div class="input-group">
+                    <label for="group-name">Nome do Grupo</label>
+                    <input type="text" id="group-name" placeholder="Nome do grupo" required />
+                </div>
+                <div class="input-group">
+                    <label>Participantes</label>
+                    <div class="participants-list">
+                        <!-- Lista de usuários será carregada aqui -->
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="cancel-button">Cancelar</button>
+                    <button type="submit" class="create-button">Criar Grupo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="./js/script.js"></script>
+</body>
+</html>
